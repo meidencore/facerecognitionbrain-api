@@ -25,12 +25,14 @@ const app = express();
 app.use(bodyParser.json())
 app.use(cors())
 
-
+app.get('/', (req, res) => res.json(process.env))
 app.post('/signin', handleSignin(db, bcrypt))
 app.post('/signup', handleSignup(db, bcrypt))
 app.get('/profile/:id', handleProfile(db))
 app.put('/image', handleImage(db))
 
 app.listen(3000, ()=> {
-    console.log("server listening on PORT 3000")
+    console.log("server listening on 3000")
+    console.log(process.env)
+    console.log('el puerto es:', process.env.PORT)
 })
